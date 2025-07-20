@@ -6,6 +6,17 @@ age = 12
 ```
 
 - let can be re-assign after definition ( mutable )
+- multiple inline declration can be applied.
+
+```js
+
+let x = 2, y=1;
+const a = 1,
+      b = 2,
+      c = 3;
+
+```
+
 
 ## const 
 
