@@ -111,9 +111,9 @@ Outputs a stack trace.
 Outputs a message to the console with the warning log level.
 
 
-## prompt(input)
+## prompt(input, default input)
 
-input should be string
+input and default input must be string or null. if not passed considered as null and will be returned.
 
 ## alert()
 
