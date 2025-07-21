@@ -43,4 +43,10 @@ console.log(obj + '');     // Output: default primitive
     ```
 
  ## hanging commas
-   
+
+ ## The art of programming 
+ ## Persistant Storage - Reference Copy while array copying - Algorithms
+ ## Tuples / Records
+ ## Parallel Run with Map Reduce Filter 
+
+ 
