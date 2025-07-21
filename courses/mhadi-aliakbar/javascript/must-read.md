@@ -42,4 +42,5 @@ console.log(obj + '');     // Output: default primitive
     user = null; // garbage
     ```
 
+ ## hanging commas
    
