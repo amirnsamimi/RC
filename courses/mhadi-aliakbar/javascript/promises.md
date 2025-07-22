@@ -82,3 +82,22 @@ findScore();
 
 console.lo("This Goes First");
 ```
+
+## Promise All 
+
+```js
+const arr = [1, 2, 3];
+const sleep = (second) =>
+  new Promise((resolve) => setTimeout(() => resolve(second), 1000 * second));
+Promise.all(      // after all of them are resolved ( fullfiled ) return response
+  arr.map((item) => {
+    sleep(item).then((x) => console.log(x));
+  })
+);
+
+Promise.race(      // after one of them is resolved ( fullfiled ) return response
+  arr.map((item) => {
+    sleep(item).then((x) => console.log(x));
+  })
+);
+```

@@ -52,3 +52,5 @@ console.log(obj + '');     // Output: default primitive
  ## you dont know js F
   - length 
   - PrototypeF
+
+ ## TOP LEVEL AWAIT
