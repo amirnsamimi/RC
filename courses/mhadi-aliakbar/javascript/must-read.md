@@ -48,5 +48,7 @@ console.log(obj + '');     // Output: default primitive
  ## Persistant Storage - Reference Copy while array copying - Algorithms
  ## Tuples / Records
  ## Parallel Run with Map Reduce Filter 
-
- 
+ ## this
+ ## you dont know js F
+  - length 
+  - PrototypeF
