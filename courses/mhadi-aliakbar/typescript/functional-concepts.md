@@ -37,16 +37,78 @@ const drivingLicence = #{
 ```
 
 ## Refrential Transparency
+
 - return of a function replace in where you call and you got no change
+
+```ts
+const add = (x: number, y: number) => {
+  console.log("Side Effect"); // side effect
+  return x + y;
+};
+
+const multiple = (x: number, y: number) => x * y; // no side effect
+
+const output = add(2, multiple(3, 4)); // here if we change add to add(2,3*4) we have to get the same output, if so then we have a pure function and we are obey the Refrential Transparency concept
+
+const now = new Date(); // this is not a pure function a pure function will return same value when ever we pass the same value as argument
+
+// exception throwing will make a function not pure
+// if you function was not pure ** dont connect to db **
+// Promise is side effect
+// function in map must be pure
+
+// if you want side effect do it in forEach not those return new array (ex)
+
+//haskel said if you have a function that gets multiple parameter , it can be multiple function with with parameter
+
+// Composablity
+const add = (x: number) => (y: number) => x + y;
+
+const increment = add(1);
+console.log(increment(4)); // 5
+
+//example
+
+const pipe =
+  (...fns: Function[]) =>
+  (input: any) =>
+    fns.reduce((acc, fn) => fn(acc), input);
+
+const process = pipe(double, increment, square);
+console.log(process(2)); // 25
+
+const trim = (s: string) => s.trim();
+const toLower = (s: string) => s.toLowerCase();
+const wrapInDiv = (s: string) => `<div>${s}</div>`;
+
+const cleanInput = pipe(trim, toLower, wrapInDiv);
+
+console.log(cleanInput("  Hello WORLD  "));
+//  <div>hello world</div>
+
+// maybe later trim |> toLower |> wrapInDiv in later ES
+```
 
 ## HOC
 
+```ts
+function fn(x: number) {
+  return x + 1;
+}
+
+function addOne(x: number, fn: Function) {
+  return fn(x);
+}
+```
+
 ## Currying
 
-## Currine
-
-## Pipe operator
-
+```ts
+function add(a) {
+  return function (b) {
+    return a + b;
+  };
+}
 ```
 
-```
+
