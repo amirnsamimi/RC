@@ -69,3 +69,5 @@ console.log(obj + ""); // Output: default primitive
 
 - polymorphism and sub-polymorphism
 - Reacord & Tuple
+- Mapped Types
+- zod.dev
