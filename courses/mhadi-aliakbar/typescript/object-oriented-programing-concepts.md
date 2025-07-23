@@ -68,4 +68,24 @@ interface Equal {
 interface Ord extends Equal {
   compare(a: Ord, b: Ord): number;
 }
+
+//structural types are the same from typescript side
+
+interface Person {
+  firstName: string;
+  lastName: string;
+}
+
+class User {
+  private _ = Symbol();
+  constructor(public firstName: string, public lastName: string) {}
+}
+
+class Student {
+  private _ = Symbol();
+  constructor(public firstName: string, public lastName: string) {}
+}
+
+// considering nominal types they are different
+// for making those classes nominal types we use Symbol()
 ```
