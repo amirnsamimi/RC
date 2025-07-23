@@ -55,3 +55,11 @@ console.log(obj + '');     // Output: default primitive
 
  ## TOP LEVEL AWAIT
  ## evaluation ( evaluate )
+
+
+ ---------
+ 
+
+## TS
+
+- polymorphism and sub-polymorphism
