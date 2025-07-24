@@ -6,3 +6,8 @@
 4. Then We send Data ->  Scripts, HTML, data, etc -> Client Gets it
 5. like HTML that we use header body and etc  which called Protocol called markup lang.In backend we have samething like xml, yaml, json and etc which are our protocol that client will use.
 6. Web Server will handle all above and we focus on business logic
+
+
+frameworks be like
+
+express,nestjs, fastify and ...
