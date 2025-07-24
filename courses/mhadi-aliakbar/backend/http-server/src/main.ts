@@ -11,6 +11,14 @@ const server = http.createServer((req, res) => {
     res.end(JSON.stringify({ message: "Hello " + url.query.name || "" }));
     return;
   }
+  
+  if (url.pathname?.startsWith("/hello") && req.method === "GET") {
+    const param = url.pathname.split("/")[2];
+    res.appendHeader("Content-Type", "application/json");
+    res.end(JSON.stringify(param));
+    return;
+  }
+
 
   if (req.url === "/hello" && req.method === "POST") {
     req.on("data", (data) => {
