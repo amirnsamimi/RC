@@ -5,10 +5,10 @@ const server = http.createServer((req, res) => {
   console.log(req.method, req.url);
 
   const url = parse(req.url || "", true);
-  console.log(url);
-  if (req.url === "/hello" && req.method === "GET") {
+
+  if (url.pathname === "/hello" && req.method === "GET") {
     res.appendHeader("Content-Type", "application/json");
-    res.end(JSON.stringify({ name: "amir" }));
+    res.end(JSON.stringify({ message: "Hello " + url.query.name || "" }));
     return;
   }
 

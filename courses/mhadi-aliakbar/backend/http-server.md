@@ -170,3 +170,35 @@ console.log(url);
 // server.listen(3000, () => console.log("serverrunning"));
 ```
 
+8. using data parsed from URL
+
+```ts
+// import http from "http";
+// import { parse } from "url";
+
+// const server = http.createServer((req, res) => {
+//   console.log(req.method, req.url);
+
+const url = parse(req.url || "", true);
+
+if (url.pathname === "/hello" && req.method === "GET") {
+  res.appendHeader("Content-Type", "application/json");
+  res.end(JSON.stringify({ message: "Hello " + url.query.name || "" }));
+  return;
+}
+
+//   if (req.url === "/hello" && req.method === "POST") {
+// req.on("data", (data) => {
+//   const userData = data.toString(); // converting buffer
+//   const userJSON = JSON.parse(userData); // convert to json
+//   res.appendHeader("Content-Type", "application/json");
+//   res.end(JSON.stringify({ name: data.name }));
+//   return;
+//     }
+// });
+
+//   res.end("hello world");
+// });
+
+// server.listen(3000, () => console.log("serverrunning"));
+```
