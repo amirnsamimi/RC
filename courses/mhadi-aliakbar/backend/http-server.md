@@ -115,3 +115,58 @@ if (req.url === "/hello" && req.method === "POST") {
 
 // server.listen(3000, () => console.log("serverrunning"));
 ```
+
+7. using GET method with Query Params, retriving data from req.url
+
+- parsing url using parse imported from url will retrive data like query params, port, host and etc
+
+```
+GET /hello?name=AmirFromQueryParams
+Url {
+  protocol: null,
+  slashes: null,
+  auth: null,
+  host: null,
+  port: null,
+  hostname: null,
+  hash: null,
+  search: '?name=AmirFromQueryParams',
+  query: [Object: null prototype] { name: 'AmirFromQueryParams' },
+  pathname: '/hello',
+  path: '/hello?name=AmirFromQueryParams',
+  href: '/hello?name=AmirFromQueryParams'
+}
+```
+
+```ts
+// import http from "http";
+import { parse } from "url";
+
+// const server = http.createServer((req, res) => {
+//   console.log(req.method, req.url);
+
+const url = parse(req.url || "", true);
+console.log(url);
+
+// if (req.url === "/hello" && req.method === "GET") {
+//   res.appendHeader("Content-Type", "application/json");
+//   res.end(JSON.stringify({ name: "amir" }));
+//   return;
+// }
+
+//   if (req.url === "/hello" && req.method === "POST") {
+// req.on("data", (data) => {
+//   const userData = data.toString(); // converting buffer
+//   const userJSON = JSON.parse(userData); // convert to json
+//   res.appendHeader("Content-Type", "application/json");
+//   res.end(JSON.stringify({ name: data.name }));
+//   return;
+//     }
+// });
+
+//   res.end("hello world");
+// });
+
+// server.listen(3000, () => console.log("serverrunning"));
+```
+

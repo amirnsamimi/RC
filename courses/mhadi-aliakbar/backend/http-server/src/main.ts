@@ -1,7 +1,11 @@
 import http from "http";
+import { parse } from "url";
 
 const server = http.createServer((req, res) => {
   console.log(req.method, req.url);
+
+  const url = parse(req.url || "", true);
+  console.log(url);
   if (req.url === "/hello" && req.method === "GET") {
     res.appendHeader("Content-Type", "application/json");
     res.end(JSON.stringify({ name: "amir" }));

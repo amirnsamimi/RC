@@ -6,10 +6,14 @@ GET http://localhost:3000 HTTP/1.1
 GET http://localhost:3000/hello HTTP/1.1
 
 
-####
+#### 
 POST http://localhost:3000/hello
 Content-Type: application/json
 
 {
     "name":"Amir From Client"
 }
+
+
+### Query Params with Get
+GET http://localhost:3000/hello?name=AmirFromQueryParams HTTP/1.1
