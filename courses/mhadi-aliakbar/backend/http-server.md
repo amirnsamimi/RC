@@ -27,7 +27,7 @@ const server = http.createServer((req, res) => {
 server.listen(3000, () => console.log("serverrunning"));
 ```
 
-4. updating our code
+4. updating our code to send back string according to url
 
 ```ts
 // import http from "http";
@@ -39,6 +39,24 @@ if(req.url === "/hello"){
     return;
 }
 
+//   res.end("hello world");
+// });
+// server.listen(3000, () => console.log("serverrunning"));
+```
+
+5. changing output from string to stringified json
+
+```ts
+// import http from "http";
+// const server = http.createServer((req, res) => {
+// console.log(req.method, req.url);
+// if(req.url === "/hello"){
+
+    res.appendHeader("Content-Type","application/json")
+    res.end(JSON.stringify({"name":"amir"}))
+    
+//     return;
+// }
 //   res.end("hello world");
 // });
 // server.listen(3000, () => console.log("serverrunning"));
