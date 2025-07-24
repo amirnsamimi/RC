@@ -34,9 +34,9 @@ server.listen(3000, () => console.log("serverrunning"));
 // const server = http.createServer((req, res) => {
 
 console.log(req.method, req.url);
-if(req.url === "/hello"){
-    res.end("hello from server!")
-    return;
+if (req.url === "/hello" && req.method === "GET") {
+  res.end("hello from server!");
+  return;
 }
 
 //   res.end("hello world");
@@ -52,12 +52,66 @@ if(req.url === "/hello"){
 // console.log(req.method, req.url);
 // if(req.url === "/hello"){
 
-    res.appendHeader("Content-Type","application/json")
-    res.end(JSON.stringify({"name":"amir"}))
-    
+res.appendHeader("Content-Type", "application/json");
+res.end(JSON.stringify({ name: "amir" }));
+
 //     return;
 // }
 //   res.end("hello world");
 // });
+// server.listen(3000, () => console.log("serverrunning"));
+```
+
+5. updating methods in each result handler
+
+```ts
+// import http from "http";
+// const server = http.createServer((req, res) => {
+// console.log(req.method, req.url);
+if (req.url === "/hello" && req.method === "GET") {
+  // res.appendHeader("Content-Type","application/json")
+  // res.end(JSON.stringify({"name":"amir"}))
+  return; // if we dont use return; here it will rise error cause we only can use res.end once.
+}
+
+if (req.url === "/hello" && req.method === "POST") {
+  // res.appendHeader("Content-Type","application/json")
+  // res.end(JSON.stringify({"name":"amir"}))
+  // return;
+}
+//   res.end("hello world");
+// });
+// server.listen(3000, () => console.log("serverrunning"));
+```
+
+6. adding req.on to handle data coming from client
+
+- IDE extendtion for rest APIs: Rest Client
+- if we don't use data.toString(), we will get a buffer response. To use that response we have to use toString()
+
+```ts
+// import http from "http";
+
+// const server = http.createServer((req, res) => {
+//   console.log(req.method, req.url);
+//   if (req.url === "/hello" && req.method === "GET") {
+//     res.appendHeader("Content-Type", "application/json");
+//     res.end(JSON.stringify({ name: "amir" }));
+//     return;
+//   }
+
+//   if (req.url === "/hello" && req.method === "POST") {
+    req.on("data", (data) => {
+      const userData = data.toString(); // converting buffer
+      const userJSON = JSON.parse(userData); // convert to json
+      res.appendHeader("Content-Type", "application/json");
+      res.end(JSON.stringify({ name: data.name }));
+      return;
+        }
+    });
+
+//   res.end("hello world");
+// });
+
 // server.listen(3000, () => console.log("serverrunning"));
 ```
