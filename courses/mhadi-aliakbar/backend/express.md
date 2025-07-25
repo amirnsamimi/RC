@@ -67,3 +67,15 @@ app.post(
   }
 );
 ```
+
+## customizing Status
+
+```ts
+app.use((req, res) => {
+  res.statu(404).send({ mesage: "not-found" }); // best practice
+  //or
+  res.send(404, { mesage: "not-found" }); // deprecated
+});
+```
+
+

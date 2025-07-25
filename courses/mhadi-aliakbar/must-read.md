@@ -71,3 +71,9 @@ console.log(obj + ""); // Output: default primitive
 - Reacord & Tuple
 - Mapped Types
 - zod.dev
+
+
+## BACKEND
+
+- app.use(express.urlEncoded({extended:true}))
+- **helm** middleware / metric / etc...

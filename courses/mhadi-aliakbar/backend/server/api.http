@@ -21,3 +21,6 @@ GET http://localhost:3000/hello?name=AmirFromQueryParams HTTP/1.1
 
 ### use parameters with GET
 GET http://localhost:3000/hello/AmirFromParams
+
+### not-found request
+GET http://localhost:3000/bye
