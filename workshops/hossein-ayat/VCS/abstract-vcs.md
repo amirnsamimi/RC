@@ -51,4 +51,8 @@
 - ### squashing will be done in Rebase -i 
 - ### conflict resolvig
 
-
+- to mark the changed
+- 1.edit 
+- 2.save
+- 3. git add <that file>
+- 4. git rebase --continue 
