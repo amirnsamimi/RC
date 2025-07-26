@@ -55,4 +55,11 @@
 - 1.edit 
 - 2.save
 - 3. git add <that file>
-- 4. git rebase --continue 
+- 4. git rebase --continue
+
+
+## SERVER ONLY ACCEPT FAST FORWARD CHANGE SET
+
+- with rebase -i -> squashed it will rise error 
+- and we will say ghalat kardi and use git push -f 
+- might be dangerous! 
