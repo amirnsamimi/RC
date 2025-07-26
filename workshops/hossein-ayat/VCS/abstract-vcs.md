@@ -1,4 +1,5 @@
 ## FEATURE BRANCH
+# COMMIT EARLY, COMMIT OFFEN
 
 - when developing a feature we add branch 
 - then we will merge / rebase 
@@ -39,3 +40,15 @@
 - we do git rebase stage cause they are on the same line only stage comes forward -> called fast-forward
 - git branch -f x -> if exsit else where do it by force and make one where I say.
 - cherry-pick -> get a commit and copy it to another
+
+## Rebase -i ( interactive rebase )
+
+- git rebase -i x
+- can drop 
+- can pick 
+- can squash 
+
+- ### squashing will be done in Rebase -i 
+- ### conflict resolvig
+
+
