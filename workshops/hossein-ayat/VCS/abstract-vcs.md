@@ -5,6 +5,8 @@
 - #### merge commit 
 - squashing
 
-## merge vs rebase vs squashing 
+## merge vs rebase vs squashing-rebase
 
 - when merging we will have difficult transparency and bisecting
+- squash rebase is more effiecent to use
+- 
