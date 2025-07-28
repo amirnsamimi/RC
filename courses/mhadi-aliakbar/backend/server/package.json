@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "bin": {
+    "note-server": "./src/index.js"
+  },
   "scripts": {
     "start": "ts-node ./src/express.ts"
   },

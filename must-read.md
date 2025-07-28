@@ -72,7 +72,6 @@ console.log(obj + ""); // Output: default primitive
 - Mapped Types
 - zod.dev
 
-
 ## BACKEND
 
 - app.use(express.urlEncoded({extended:true}))
@@ -80,7 +79,14 @@ console.log(obj + ""); // Output: default primitive
 - vcs: Pijul
 - vcs: git fetch <remote> <branch>
 
-## BACKEND 
+## BACKEND
 
 - cross-env
 - node env
+
+## scottmoss
+
+- last pass
+- one pass
+- slack
+ 
