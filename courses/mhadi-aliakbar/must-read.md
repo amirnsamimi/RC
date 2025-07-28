@@ -72,6 +72,14 @@ console.log(obj + ""); // Output: default primitive
 - Mapped Types
 - zod.dev
 
+
+## BACKEND
+
+- app.use(express.urlEncoded({extended:true}))
+- **helm** middleware / metric / etc...
+- vcs: Pijul
+- vcs: git fetch <remote> <branch>
+
 ## BACKEND 
 
 - cross-env

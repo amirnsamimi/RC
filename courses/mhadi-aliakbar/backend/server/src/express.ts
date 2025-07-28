@@ -3,6 +3,10 @@ import express from "express";
 const app = express();
 app.use(express.json())
 
+app.use((_, res) => {
+  res.status(404).send({ mesage: "not-found" }); 
+});
+
 app.get("", (req, res) => {
   res.send("hello from root");
 });
