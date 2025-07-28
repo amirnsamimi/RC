@@ -71,3 +71,8 @@ console.log(obj + ""); // Output: default primitive
 - Reacord & Tuple
 - Mapped Types
 - zod.dev
+
+## BACKEND 
+
+- cross-env
+- node env
