@@ -4,7 +4,7 @@
  *    ## npx prisma --init
  *    ## render.com -> create postgresql db or use postgres locally
  *    ## prisma by prisma extention is usefull
- *
+ *    ## npx prisma format  -> will add all missing relations
  */
 
 import { config } from "dotenv";
