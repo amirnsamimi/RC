@@ -5,6 +5,9 @@
  *    ## render.com -> create postgresql db or use postgres locally
  *    ## prisma by prisma extention is usefull
  *    ## npx prisma format  -> will add all missing relations
+ *    ## pnpm add @prisma/client --save  -> this is the SDK, How we talk to db, Migration will create this SDK and if schema is different migration creates new SDK.
+ *    ## npx prisma migrate dev --name init, ( name: migrations saved somewhere so we can rerun later ( here named init ) )
+ *    ## npx prisma migrate reset ( will reset whole db , if exist )
  */
 
 import { config } from "dotenv";
