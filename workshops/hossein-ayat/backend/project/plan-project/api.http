@@ -1,0 +1,27 @@
+
+### Create a new plan
+POST http://localhost:3001/plan
+Content-Type: application/json
+
+{
+  "title": "My New Plan",
+  "description": "Something interesting"
+}
+
+### Create a new plan ( Wrong )
+POST http://localhost:3001/plan
+Content-Type: application/json
+
+{
+  "title": 2,
+  "description": "Something interesting"
+}
+
+
+
+###
+GET http://localhost:3001/plan/1
+
+
+###
+GET http://localhost:3001/plan/1

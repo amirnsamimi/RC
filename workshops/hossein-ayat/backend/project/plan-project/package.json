@@ -1,0 +1,22 @@
+{
+  "name": "plan-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "nodemon ./src/main.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "zod": "^4.0.14"
+  },
+  "devDependencies": {
+    "@types/node": "^24.2.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  }
+}
