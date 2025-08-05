@@ -15,6 +15,50 @@ app.use((req: Request, res: Response, next: NextFunction) => {
     next();
 })
 
+// User
+
+
+type TRoles = "Admin" | "Representative" | "Normal"
+
+interface IUser {
+    id: string
+    username: string,
+    password: string
+    role: TRoles
+}
+
+const userSchema = z.object({
+    username: z.string().min(1),
+    password: z.string().min(1),
+    role: z.enum(["Admin", "Representative", "Normal"])
+})
+
+const users: IUser[] = [];
+
+app.post("/login", (req: Request, res: Response) => {
+
+    const {username, password} = req.body
+    if (!username || !password) {
+        res.status(400).json({message: "bad request"});
+        return;
+    }
+
+    const parseResult = userSchema.safeParse(req.body)
+    if (!parseResult.success) {
+        res.status(400).json({message: parseResult.error.message})
+        return;
+    }
+
+    const userFound = users.find(user => user.username === username && user.password === password)
+    if (!userFound) {
+        res.status(401).json({message: "Invalid username or password"})
+        return;
+    }
+
+    res.status(200).send({message: "Login successful", user: userFound})
+
+})
+
 
 // Plans
 interface IPlan {
@@ -22,6 +66,7 @@ interface IPlan {
     title: string;
     description?: string;
 }
+
 const planSchema = z.object({
     title: z.string().min(1),
     description: z.string().min(1).optional()
