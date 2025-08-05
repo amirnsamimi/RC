@@ -1,11 +1,11 @@
 import dotenv from "dotenv";
 
 dotenv.config();
-import express, { Response, Request, NextFunction } from "express";
+import express, { Response, Request, NextFunction, Express } from "express";
 import { z } from "zod";
 import { v4 } from "uuid";
 
-const app = express();
+export const app: Express = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -73,25 +73,23 @@ const planSchema = z.object({
 });
 const plans: IPlan[] = [];
 app.post("/plan", (req: Request, res: Response) => {
-  const userId = req.headers["authorization"];
+  const userId = req.headers.authorization || undefined;
   const { title, description } = req.body;
   const logged = users.find((user) => user.id === userId);
-  if (!logged) {
-    res.status(401).send({ message: "unauthorized" });
+  if (logged === undefined) {
+    return res.status(401).send({ message: "unauthorized" });
   }
 
   if (req.body.title === undefined) {
-    res.status(400).json({ message: "Please enter a title" });
-    return;
+    return res.status(400).json({ message: "Please enter a title" });
   }
   const parseResult = planSchema.safeParse(req.body);
   if (!parseResult.success) {
-    res.status(400).json({ message: parseResult.error.message });
-    return;
+    return res.status(400).json({ message: parseResult.error.message });
   }
   const plan: IPlan = { id: plans.length + 1, title, description };
   plans.push(plan);
-  res
+  return res
     .status(200)
     .send({ message: `Plan with id ${plan.id} added successfully.` });
 });
