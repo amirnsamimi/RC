@@ -57,7 +57,7 @@ app.post("/login", (req: Request, res: Response) => {
     return;
   }
 
-  res.status(200).send({ message: "Login successful", user: userFound });
+  return res.status(200).send({ message: "Login successful", user: userFound });
 });
 
 // Plans
@@ -74,11 +74,13 @@ const planSchema = z.object({
 const plans: IPlan[] = [];
 app.post("/plan", (req: Request, res: Response) => {
   const userId = req.headers.authorization || undefined;
-  const { title, description } = req.body;
+
   const logged = users.find((user) => user.id === userId);
   if (logged === undefined) {
     return res.status(401).send({ message: "unauthorized" });
   }
+
+  const { title, description } = req.body;
 
   if (req.body.title === undefined) {
     return res.status(400).json({ message: "Please enter a title" });
