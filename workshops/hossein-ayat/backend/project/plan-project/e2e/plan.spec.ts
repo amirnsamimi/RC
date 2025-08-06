@@ -1,9 +1,26 @@
 import request from "supertest";
-import { app } from "../src/main";
+import { app } from "../src/api";
 
 describe("craeting plan", () => {
-  it("failed if user is not logged in", () => {
+  test("failed if user is not logged in", async () => {
     // promise in return
-    return request(app).post("/plan").expect(401)
+    await request(app).post("/plan").expect(401);
+  });
+
+  test("should create a plan if we are logged in", async () => {
+    const { body: user } = await request(app)
+      .post("/login")
+      .send({ username: "admin", password: "admin" })
+      .expect(200);
+    const { body: plan } = await request(app)
+      .post("/plan")
+      .set("Authorization", user.id)
+      .send({
+        title: "plan 2",
+        description: "plan 2 is awsome",
+      })
+      .expect(200);
+      expect(plan.title).toBe("plan 2")
+ 
   });
 });
