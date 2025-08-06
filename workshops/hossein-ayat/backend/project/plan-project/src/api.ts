@@ -9,12 +9,14 @@ export const app: Express = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Logging everytime a request comes in
-app.use((req: Request, res: Response, next: NextFunction) => {
-  console.log(req.method, req.url);
-  next();
-});
+// Logging everytime a request comes in Test
 
+if (process.env.NODE_ENV !== "TEST") {
+  app.use((req: Request, res: Response, next: NextFunction) => {
+    console.log(req.method, req.url);
+    next();
+  });
+}
 // User
 
 type TRoles = "Admin" | "Representative" | "Normal";
