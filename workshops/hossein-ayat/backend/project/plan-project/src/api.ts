@@ -1,114 +1,29 @@
 import dotenv from "dotenv";
 
 dotenv.config();
-import express, { Response, Request, NextFunction, Express } from "express";
-import { z } from "zod";
-import { v4 } from "uuid";
+import express, {Response, Request, NextFunction, Express} from "express";
+import {app as planRouter} from "./router/plan.router"
+import {app as userRouter} from "./router/users.router"
+import {app as programRouter} from "./router/program.router"
 
 export const app: Express = express();
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({extended: true}));
 
 // Logging everytime a request comes in Test
 
 if (process.env.NODE_ENV !== "TEST") {
-  app.use((req: Request, res: Response, next: NextFunction) => {
-    console.log(req.method, req.url);
-    next();
-  });
-}
-// User
-
-type TRoles = "Admin" | "Representative" | "Normal";
-
-interface IUser {
-  id: string;
-  username: string;
-  password: string;
-  role: TRoles;
+    app.use((req: Request, res: Response, next: NextFunction) => {
+        console.log(req.method, req.url);
+        next();
+    });
 }
 
-const userSchema = z.object({
-  username: z.string().min(1),
-  password: z.string().min(1),
-});
-
-const users: IUser[] = [
-  { id: v4(), username: "admin", password: "admin", role: "Admin" },
-];
-
-app.post("/login", (req: Request, res: Response) => {
-  const { username, password } = req.body;
-  if (username === undefined || password === undefined) {
-    res.status(400).json({ message: "bad request" });
-    return;
-  }
-
-  const parseResult = userSchema.safeParse(req.body);
-  if (!parseResult.success) {
-    res.status(400).json({ message: parseResult.error.message });
-    return;
-  }
-
-  const user = users.find(
-    (user) => user.username === username && user.password === password
-  );
-  if (!user) {
-    res.status(401).json({ message: "Invalid username or password" });
-    return;
-  }
-
-  return res.status(200).send({ ...user });
-});
-
-// Plans
-interface IPlan {
-  id: number;
-  title: string;
-  description?: string;
-}
-
-const planSchema = z.object({
-  title: z.string().min(1),
-  description: z.string().min(1).optional(),
-});
-const plans: IPlan[] = [];
-app.post("/plan", (req: Request, res: Response) => {
-  const userId = req.headers.authorization;
-  const logged = users.find((user) => user.id === userId);
-  if (logged === undefined) {
-    return res.status(401).send({ message: "unauthorized" });
-  }
-
-  const { title, description } = req.body;
-
-  if (req.body.title === undefined) {
-    return res.status(400).json({ message: "Please enter a title" });
-  }
-  const parseResult = planSchema.safeParse(req.body);
-  if (!parseResult.success) {
-    return res.status(400).json({ message: parseResult.error.message });
-  }
-  const plan: IPlan = { id: plans.length + 1, title, description };
-  plans.push(plan);
-  return res.status(200).send(plan);
-});
-
-app.get("/plan/:id", (req: Request, res: Response) => {
-  const id = Number(req.params.id);
-  if (Number.isNaN(id)) {
-    res.status(400).json({ message: "Please enter a valid id" });
-    return;
-  }
-  const plan = plans.find((plan) => plan.id === id);
-  if (!plan) {
-    res.status(404).json({ message: "Plan not found" });
-    return;
-  }
-  res.status(200).send(plan);
-});
+app.use("/plan", planRouter)
+app.use(userRouter)
+app.use("/program", programRouter)
 
 // Not Found Middleware
 app.use((req: Request, res: Response) => {
-  res.status(404).send("Not Found");
+    res.status(404).send("Not Found");
 });

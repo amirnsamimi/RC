@@ -1,0 +1,1 @@
+export const isNotEmptyString = (str: unknown): str is string => typeof str === 'string' && str.length > 0;

@@ -10,7 +10,7 @@
  *    ## npx prisma migrate reset ( will reset whole db , if exist )
  *    ## express Router(), with app.use('path','file path')
  *    ## extention Thunder client
- *    ## middlewares are used widely for authentication ( people accessing routes ), error handling and ... const middleware = (req,res,next) => {  after done in stack go to. next()}
+ *    ## middlewares are used widely for authentication ( people accessing router ), error handling and ... const middleware = (req,res,next) => {  after done in stack go to. next()}
  *    ## pnpm add morgan --save ( log request useful middleware ). app.use(morgan('level of logging' -> 'dev' , ...)) app.use will be applied on all api go through middleware first
  *    ## middlewares =>  express.json() // can parse body
  *    ## middlewares => express.urlencoded({extended:true})
